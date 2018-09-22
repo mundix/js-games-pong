@@ -1,5 +1,5 @@
 let loops;
-let speed = 5;
+let speed = 6;
 const c = document.getElementById("canvas");
 let areaW = c.width;
 let areaH = c.height;
@@ -90,14 +90,14 @@ class Palette extends Base {
 }
 
 // Global Functions 
-
+// Draw function
 function draw() {
     ctx.clearRect(0,0,areaW,areaH);
     ball.draw();
     player1.draw();
     player2.draw();
 }
-
+// Animate function
 function frame() {
     ball.move();
     player1.move();
@@ -111,6 +111,33 @@ function init() {
     modal.style.display = "none";
     frame();
 }
+
+// controls functions
+function movePlayers(event) {
+    let key = event.keyCode;
+    if(key === 38) {
+        //player 2 up 
+        player2.dir = -speed;
+    }
+    if(key === 40)
+    {
+        player2.dir = speed;
+    }
+    if(key === 87) {
+        //player 1 up 
+        player1.dir = -speed;
+    }
+    if(key === 83)
+    {
+        player1.dir = speed;
+    }
+
+
+}
+function stopPlayer(event) {
+    let key = event.keyCode;
+}
+
 //Objects 
 let ball = new Ball();
 let player1 = new Palette(30);
