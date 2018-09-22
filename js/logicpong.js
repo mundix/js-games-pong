@@ -134,8 +134,15 @@ function movePlayers(event) {
 
 
 }
-function stopPlayer(event) {
+function stopPlayers(event) {
     let key = event.keyCode;
+    if(key === 38 || key === 40) {
+        player2.dir = 0;
+    }
+    if(key === 87 || key === 83)
+    {
+        player1.dir = 0;
+    }
 }
 
 //Objects 
