@@ -67,15 +67,18 @@ class Ball  extends Base {
 
 function draw() {
     ctx.clearRect(0,0,areaW,areaH);
-
+    ball.draw();
 }
 
 function frame() {
-
+    ball.move();
+    draw();
     requestAnimationFrame(frame);
 }
 
 function init() {
+    let modal = document.getElementById("modal");
+    modal.style.display = "none";
     frame();
 }
 
