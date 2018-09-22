@@ -6,6 +6,8 @@ let areaH = c.height;
 const ctx = c.getContext("2d");
 let score1 = 0;
 let score2 = 0;
+let paletteSize = 75;
+let surface =  areaH - paletteSize;
 
 
 // Classes 
@@ -57,7 +59,33 @@ class Ball  extends Base {
 
     draw() {
         ctx.fillRect(this.x,this.y,this.size,this.size);
-        
+    }
+}
+
+class Palette extends Base {
+    constructor(x) {
+        super();
+        this.x = x;
+        this.w = 25;
+        this.h = paletteSize;
+        this.y = Math.floor(Math.random() * surface);
+        this.dir = 0;
+    }
+
+    draw() {
+        ctx.fillRect(this.x,this.y,this.w,this.h);
+    }
+    move() {
+        this.y += this.dir;
+        // collision condition
+        if(this.y < 0 ){ //Reset palette position
+            this.y = 0;
+            this.dir = 9;
+        }
+        if(this.y >= surface) {
+            this.y = surface;
+            this.dir = 0;
+        }
     }
 }
 
@@ -66,10 +94,14 @@ class Ball  extends Base {
 function draw() {
     ctx.clearRect(0,0,areaW,areaH);
     ball.draw();
+    player1.draw();
+    player2.draw();
 }
 
 function frame() {
     ball.move();
+    player1.move();
+    player2.move();
     draw();
     requestAnimationFrame(frame);
 }
@@ -81,5 +113,7 @@ function init() {
 }
 //Objects 
 let ball = new Ball();
+let player1 = new Palette(30);
+let player2 = new Palette(545); //width game board define in the html canvas.
 init();
 
