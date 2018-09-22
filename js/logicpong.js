@@ -6,8 +6,7 @@ let areaH = c.height;
 const ctx = c.getContext("2d");
 let score1 = 0;
 let score2 = 0;
-//Objects 
-let ball = new Ball();
+
 
 // Classes 
 class Base {
@@ -18,7 +17,6 @@ class Base {
         }else{
             return true;
         }
-
     }
 }
 
@@ -81,4 +79,7 @@ function init() {
     modal.style.display = "none";
     frame();
 }
+//Objects 
+let ball = new Ball();
+init();
 
